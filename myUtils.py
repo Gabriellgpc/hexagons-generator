@@ -55,9 +55,8 @@ def drawHexagons(image, hexagons, thickness=2, filled=False, color=(0,0,0,255)):
     else:
         cv2.polylines(image, hexagons, True, color=color, thickness=thickness, lineType=cv2.LINE_AA)
 
-def enumerateHexagons(image, centers, diagonal, scale=0.5, color=BLACK, font=cv2.FONT_HERSHEY_PLAIN):
-    offsetx = diagonal//5
-    offsety = diagonal//2
-    for n,c in enumerate(centers):
-        orig = (c[0] + offsetx, c[1] + offsety)
-        cv2.putText(image, f'{n+1}', orig=orig, font=font, scale=scale, color=color, thickness=2)
+def enumerateHexagons(image, positions, diagonal, offsetx=0, offsety=0, scale=0.7, color=BLACK, font=cv2.FONT_HERSHEY_PLAIN):
+    radius = int(round(diagonal * math.cos( math.radians(30) )))
+    for n,c in enumerate(positions):
+        pt = (c[0] + offsetx - radius, c[1] + offsety + radius//3)
+        cv2.putText(image, '{:04d}'.format(n), org=pt, fontFace=font, fontScale=scale, color=color, thickness=2)

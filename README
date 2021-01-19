@@ -1,0 +1,10 @@
+# Na pasta do projeto
+# Criar um ambiente virtual e ativa-lo (para desativar digite no mesmo terminal: deactivate)
+python3 -m venv venv
+source venv/bin/activate
+
+# instalar pacotes necessários
+pip install -r requirements.txt
+
+# executar
+python hexagons_generator.py
